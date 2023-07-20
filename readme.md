@@ -1,7 +1,7 @@
 # hacko-med-23 
 
 ## Team Members
-- [Niraj Modi]()
+- [Niraj Modi](https://www.linkedin.com/in/thecodeventurer/)
 - [Gopinath Maji]()
 - [Bishal Bhattacharjee]()
 - [Gunjita Sahu]()
