@@ -1,45 +1,5 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    display: flex;
-    flex-direction: column;
-    padding:10px;
-}
-
-textarea{
-    width: 50%;
-    border: 2px solid #ccc;
-    outline: none;
-    resize: none;
-    font-size: 20px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    line-height: 1.5;
-}
-
-button{
-    width:150px;
-    margin:10px;
-    padding: 10px 20px;
-    border: 2px solid #ccc;
-    background-color: #fff;
-    font-size: 20px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    line-height: 1.5;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
 #leftHand,#rightHand{
-    width: 800px;
-    height: 570px;
-    background-color: white;
-    justify-content: center;
-    align-items: center;
-    margin:10px;
-    border:2px solid black;
+    display:block;
+    border:2px solid;
 }
+
