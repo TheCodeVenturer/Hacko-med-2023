@@ -42,17 +42,45 @@ leftHandCanvas.addEventListener('click', function(event) {
   const rect = leftHandCanvas.getBoundingClientRect();
   const x = event.clientX - rect.left;
   const y = event.clientY - rect.top;
-
+  if(count==0){
+    frontX = x
+    frontY = y
+    count++
+  }
+  else{
+    backX = x
+    backY = y
+    count = 0
+    const key = `${keyHead}${idx}`
+    keyDict[key] = [frontX,frontY,backX,backY]
+    idx++
+  }
   // Draw the highlight at the clicked position on the left-hand canvas
   drawHighlight(ctxLeft, x, y);
 });
 
 // Event listener for the click on the right-hand canvas
+let count = 0
+let idx=1;
+let frontX,frontY,backX,backY;
 rightHandCanvas.addEventListener('click', function(event) {
   // Get the mouse position relative to the canvas
   const rect = rightHandCanvas.getBoundingClientRect();
   const x = event.clientX - rect.left;
   const y = event.clientY - rect.top;
+  if(count==0){
+    frontX = x
+    frontY = y
+    count++
+  }
+  else{
+    backX = x
+    backY = y
+    count = 0
+    const key = `${keyHead}${idx}`
+    keyDict[key] = [frontX,frontY,backX,backY]
+    idx++
+  }
 
   // Draw the highlight at the clicked position on the right-hand canvas
   drawHighlight(ctxRight, x, y);
@@ -62,27 +90,39 @@ rightHandCanvas.addEventListener('click', function(event) {
 const leftHandImage = document.getElementById('leftImage');
 const rightHandImage = document.getElementById('rightImage');
 
-leftHandImage.onload = function() {
+const leftImageReload = () =>{
   leftHandCanvas.width = leftHandImage.width;
   leftHandCanvas.height = leftHandImage.height;
   drawImageScaled(ctxLeft, leftHandImage);
-};
+}
 
-rightHandImage.onload = function() {
+leftHandImage.onload = leftImageReload
+
+const rightImageReload = () =>{
   rightHandCanvas.width = rightHandImage.width;
   rightHandCanvas.height = rightHandImage.height;
   drawImageScaled(ctxRight, rightHandImage);
-};
+}
+rightHandImage.onload = rightImageReload
 
 let keyHead
 let keyDict = {}
 
 document.addEventListener('keydown', (event) => {
   var name = event.key;
-  var code = event.code;
   // Alert the key name and key code on keydown
   if(name == 'n')
     keyHead = prompt("Enter the name of section:")
-  if(name == 's')
-    console.log()
+  if(name == 's'){
+    console.log(JSON.stringify(keyDict))
+    rightImageReload()
+    leftImageReload()
+  }
+  if(name =='r'){
+    keyDict = {}
+    keyHead = null
+    rightImageReload()
+    leftImageReload()
+    console.log("Reset")
+  }
 }, false);
