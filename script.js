@@ -31,7 +31,7 @@ function drawImageScaled(ctx, img) {
 // Function to draw a highlight at the clicked position
 function drawHighlight(ctx, x, y) {
   ctx.beginPath();
-  ctx.arc(x, y, 4, 0, 2 * Math.PI);
+  ctx.arc(x, y, 3, 0, 2 * Math.PI);
   ctx.fillStyle = 'red';
   ctx.fill();
 }
