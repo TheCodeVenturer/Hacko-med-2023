@@ -42,45 +42,30 @@ leftHandCanvas.addEventListener('click', function(event) {
   const rect = leftHandCanvas.getBoundingClientRect();
   const x = event.clientX - rect.left - 1.5;
   const y = event.clientY - rect.top - 1.5;
-  if(count==0){
-    frontX = x
-    frontY = y
-    count++
-  }
-  else{
-    backX = x
-    backY = y
-    count = 0
-    const key = `${keyHead}${idx}`
-    keyDict[key] = [frontX,frontY,backX,backY]
-    idx++
-  }
+  frontX = x
+  frontY = y
+  count = 0
+  const key = `${keyHead}${idx}`
+  leftHand[key] = [frontX,frontY]
+  idx++
   // Draw the highlight at the clicked position on the left-hand canvas
   drawHighlight(ctxLeft, x, y);
 });
 
 // Event listener for the click on the right-hand canvas
-let count = 0
-let idx=1;
-let frontX,frontY,backX,backY;
+let idx;
+let frontX,frontY;
 rightHandCanvas.addEventListener('click', function(event) {
   // Get the mouse position relative to the canvas
   const rect = rightHandCanvas.getBoundingClientRect();
   const x = event.clientX - rect.left - 1.5;
   const y = event.clientY - rect.top - 1.5;
-  if(count==0){
-    frontX = x
-    frontY = y
-    count++
-  }
-  else{
-    backX = x
-    backY = y
-    count = 0
-    const key = `${keyHead}${idx}`
-    keyDict[key] = [frontX,frontY,backX,backY]
-    idx++
-  }
+  frontX = x
+  frontY = y
+  count = 0
+  const key = `${keyHead}${idx}`
+  rightHand[key] = [frontX,frontY]
+  idx++
 
   // Draw the highlight at the clicked position on the right-hand canvas
   drawHighlight(ctxRight, x, y);
@@ -106,25 +91,37 @@ const rightImageReload = () =>{
 rightHandImage.onload = rightImageReload
 
 let keyHead
-let keyDict = {}
+let leftHand = {}
+let rightHand = {}
 
 const handleImageGeneration = () =>{
-  for(let key in keyDict){
-    let [frontX,frontY,backX,backY] = keyDict[key]
+  for (let key in leftHand){
+    let [frontX,frontY] = leftHand[key]
     drawHighlight(ctxLeft, frontX, frontY);
-    drawHighlight(ctxRight, backX, backY);
-    console.log(key)
   }
+  for (let key in rightHand){
+    let [frontX,frontY] = rightHand[key]
+    drawHighlight(ctxRight, frontX, frontY);
+  }
+  // for(let key in keyDict){
+  //   let [frontX,frontY,backX,backY] = keyDict[key]
+  //   drawHighlight(ctxLeft, frontX, frontY);
+  //   drawHighlight(ctxRight, backX, backY);
+  //   console.log(key)
+  // }
 }
 
 
 document.addEventListener('keydown', (event) => {
   var name = event.key;
   // Alert the key name and key code on keydown
-  if(name == 'n')
+  if(name == 'n'){
     keyHead = prompt("Enter the name of section:")
+    keyHead = keyHead.toLowerCase()
+    idx = prompt("Enter Index of the point")
+  }
   if(name == 's'){
-    console.log(JSON.stringify(keyDict))
+    console.log(JSON.stringify({leftHand,rightHand}))
     rightImageReload()
     leftImageReload()
   }
