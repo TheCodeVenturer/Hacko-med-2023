@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackomed 2023</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+   <main>
+    <div class="container">
+        <label for="acupuncturePoint">Enter Acupuncture Point:</label>
+        <input type="input" id="acupuncturePoint" placeholder="e.g., LI4">
+        <button onclick="handleImageGeneration">Generate</button>
+        </div>
+    
+    <img src="./Left.jpg" width="1280" height="710" style="display: none;" id="leftImage" />
+    <img src="./Right.jpg" width="1280" height="710" style="display: none;" id="rightImage"/>
+    <canvas id="leftHand" width="1280" height="710" ></canvas>
+    <canvas id="rightHand" width="1280" height="710" ></canvas>
+    <button class ="btn">Download Left Image</button>
+    <button class ="btn">Download Right Image</button>
+   </main> 
+    
+    <script src="script.js"></script>
+</body>
+</html>
