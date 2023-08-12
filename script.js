@@ -40,8 +40,8 @@ function drawHighlight(ctx, x, y) {
 leftHandCanvas.addEventListener('click', function(event) {
   // Get the mouse position relative to the canvas
   const rect = leftHandCanvas.getBoundingClientRect();
-  const x = event.clientX - rect.left;
-  const y = event.clientY - rect.top;
+  const x = event.clientX - rect.left - 1.5;
+  const y = event.clientY - rect.top - 1.5;
   if(count==0){
     frontX = x
     frontY = y
@@ -66,8 +66,8 @@ let frontX,frontY,backX,backY;
 rightHandCanvas.addEventListener('click', function(event) {
   // Get the mouse position relative to the canvas
   const rect = rightHandCanvas.getBoundingClientRect();
-  const x = event.clientX - rect.left;
-  const y = event.clientY - rect.top;
+  const x = event.clientX - rect.left - 1.5;
+  const y = event.clientY - rect.top - 1.5;
   if(count==0){
     frontX = x
     frontY = y
@@ -108,6 +108,16 @@ rightHandImage.onload = rightImageReload
 let keyHead
 let keyDict = {}
 
+const handleImageGeneration = () =>{
+  for(let key in keyDict){
+    let [frontX,frontY,backX,backY] = keyDict[key]
+    drawHighlight(ctxLeft, frontX, frontY);
+    drawHighlight(ctxRight, backX, backY);
+    console.log(key)
+  }
+}
+
+
 document.addEventListener('keydown', (event) => {
   var name = event.key;
   // Alert the key name and key code on keydown
@@ -119,10 +129,6 @@ document.addEventListener('keydown', (event) => {
     leftImageReload()
   }
   if(name =='r'){
-    keyDict = {}
-    keyHead = null
-    rightImageReload()
-    leftImageReload()
-    console.log("Reset")
+    location.reload()
   }
 }, false);
