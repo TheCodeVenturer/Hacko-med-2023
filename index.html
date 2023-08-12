@@ -14,22 +14,23 @@
     </div>
     <img
       src="./Left.jpg"
-      width="1280"
-      height="710"
+      width="1440"
+      height="800"
       style="display: none"
       id="leftImage"
     />
     <img
       src="./Right.jpg"
-      width="1280"
-      height="710"
+      width="1440"
+      height="800"
       style="display: none"
       id="rightImage"
     />
-    <canvas id="leftHand" width="1280" height="710"></canvas>
-    <canvas id="rightHand" width="1280" height="710"></canvas>
-    <button class="Download button">Download Left Image</button>
-    <button class="Download button">Download Right Image</button>
+    <canvas id="leftHand" width="1440" height="800"></canvas>
+    <canvas id="rightHand" width="1440" height="800"></canvas>
+    <button class="Download button" onclick="downloadImage('left')">Download Left Image</button>
+    <button class="Download button" onclick="downloadImage('right')">Download Right Image</button>
+    <img src="" id="imageToBeDownloaded" style="display: none" />
     <script src="script.js"></script>
   </body>
 </html>
