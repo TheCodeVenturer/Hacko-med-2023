@@ -46,7 +46,6 @@ input[type="input"] {
 #rightHand {
   display: block;
   border: 2px solid;
-  cursor: pointer;
 }
 
 .Download{
