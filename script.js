@@ -29,10 +29,10 @@ function drawImageScaled(ctx, img) {
 }
 
 // Function to draw a highlight at the clicked position
-function drawHighlight(ctx, x, y) {
+function drawHighlight(ctx, x, y,color) {
   ctx.beginPath();
-  ctx.arc(x, y, 4, 0, 2 * Math.PI);
-  ctx.fillStyle = "red";
+  ctx.arc(x, y, 6, 0, 2 * Math.PI);
+  ctx.fillStyle = color;
   ctx.fill();
 }
 
@@ -166,15 +166,18 @@ const handleImageGeneration = () => {
   var input = inputBox.value;
   input = input.toLowerCase();
   input = input.split(",");
-  for (let ele of input) {
-    ele = ele.trim();
+  for (let item of input) {
+    item = item.trim();
+    item = item.split(" ")
+    let [ele,color] = item;
+    color = color=='w'?'white':'yellow'
     if (leftHand[ele]) {
       let [frontX, frontY] = leftHand[ele];
-      drawHighlight(ctxLeft, frontX - 0.5, frontY - 0.5);
+      drawHighlight(ctxLeft, frontX - 1.5, frontY - 1.5,color);
     }
     if (rightHand[ele]) {
       let [frontX, frontY] = rightHand[ele];
-      drawHighlight(ctxRight, frontX - 0.5, frontY - 0.5);
+      drawHighlight(ctxRight, frontX - 1.5, frontY - 1.5,color);
     }
   }
 };
